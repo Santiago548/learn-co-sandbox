@@ -4,5 +4,5 @@ require_relative "../lib/dnd_5e"
  
 Dnd5e::CLI.new.call
 
-#!usr/bin/env ruby
+
 
