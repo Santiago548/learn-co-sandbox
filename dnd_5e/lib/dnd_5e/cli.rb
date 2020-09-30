@@ -8,6 +8,8 @@ class Dnd5e::CLI
    @klass = gets.strip.downcase
     puts ""
    API.fetch_klass(@klass)
+   puts ""
+   puts "selcet number to learn more specific information on your chossesn class"
    
   end
 end

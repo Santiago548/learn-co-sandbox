@@ -1,6 +1,7 @@
 class Klass
+  attr_accessor :name
   
-  def list 
+  def list_klass 
     puts ""
     puts "1. Barbarian" # {i}. {name}
     puts"-----------"
@@ -26,5 +27,11 @@ class Klass
     puts"-----------"
     puts "12. Wizard"
     puts""
+  end
+  
+  def list_starting_equipment
+    puts ""
+    puts "1. equipment name" # {i}. {name}
+    puts"-----------"
   end
 end

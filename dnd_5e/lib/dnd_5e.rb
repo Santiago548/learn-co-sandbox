@@ -6,7 +6,7 @@ require_relative "./dnd_5e/klass"
 
 require 'pry'
 require 'json'
-require 'net'
+require 'net/http'
 
 module Dnd5e
   class Error < StandardError; end
