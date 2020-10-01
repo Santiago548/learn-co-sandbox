@@ -5,16 +5,16 @@ class API
     url = "https://www.dnd5eapi.co/api/classes/#{klass}"
     uri = URI(url)
     response = Net::HTTP.get(uri)
-    index = JSON.parse(response)
     #name = JSON.parse(response)["name"]
     #hit_die = JSON.parse(response)["hit_die"]
     proficiencies = JSON.parse(response)["proficiencies"]
-      proficiencies.each do |p|
-        a = Klass.new
-        a.name = p["name"]
-        binding.pry
-    end
+    proficiencies.each do |p|
+      Klass.new(name: p["name"])
+      end
+   
   end
+  
+  
   
 end
 
