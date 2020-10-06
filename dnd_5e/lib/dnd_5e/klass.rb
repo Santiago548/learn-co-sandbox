@@ -2,9 +2,8 @@ class Klass
    attr_accessor  :index, :hit_die, :proficiencies
    @@all = []
   
-    def initialize(index:, hit_die:) #name: 
+    def initialize(index:, hit_die:) 
       @index = index
-      #@name = name
       @hit_die = hit_die
       @proficiencies = []
       @@all << self
@@ -14,11 +13,8 @@ class Klass
       @@all
     end
     
-    def self.find_klass(index)
-      @@all.select {|k| k.index == index}
+    def self.find_klass(klass)
+      @@all.find {|k| k.index == klass}
     end
-    
-     def self.find_proficiencies(name)
-      @@all.select {|k| k.name == k.name}
-    end
+
 end 
