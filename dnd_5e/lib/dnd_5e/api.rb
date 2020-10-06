@@ -1,25 +1,46 @@
 class API
   
-  
-  def self.fetch_klass(klass)
+  #only for populating and showoing the user the classes
+  def self.fetch_klasses
+    url = "https://www.dnd5eapi.co/api/classes/"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    index = JSON.parse(response)["results"]
+    index.each do |n|
+      Klasses.new(index: n["index"])
+    end
+  end
+
+  #used to creat objects from user input
+   def self.fetch_klass(klass)
     url = "https://www.dnd5eapi.co/api/classes/#{klass}"
     uri = URI(url)
     response = Net::HTTP.get(uri)
-    #name = JSON.parse(response)["name"]
-    #hit_die = JSON.parse(response)["hit_die"]
     proficiencies = JSON.parse(response)["proficiencies"]
+    klass = JSON.parse(response)
+    n_klass = Klass.new(index: klass["index"], hit_die: klass["hit_die"])
     proficiencies.each do |p|
-      Klass.new(name: p["name"])
-      end
-   
+      new_klass_prof = Proficiencies.new(index: p["name"])
+      #n_klass.proficiencies << new_klass_prof
+      new_klass_prof.klass << n_klass unless new_klass_prof.klass == new_klass_prof
+      #binding.pry
+    end
   end
-  
-  
-  
+
+
+
+  #used to fetch the proficiencies of the inputed user class
+  #def self.fetch_proficiencies(klass)
+    #url = "https://www.dnd5eapi.co/api/classes/#{klass}"
+    #uri = URI(url)
+    #response = Net::HTTP.get(uri)
+   # binding.pry
+    #proficiencies = JSON.parse(response)["proficiencies"]
+    #proficiencies.each do |p|
+    #a = Proficiencies.new(index: p["index"])
+    #binding.pry
+   #end
+  #end
+
 end
 
-# https://www.dnd5eapi.co/api/classes/cleric/starting-equipment/
-  #list of starting-equipment
-# https://www.dnd5eapi.co/api/classes/cleric/spells/
-  #list of spells if no spell return not spellcaster
-# https://www.dnd5eapi.co/api/classes/cleric/starting-equipment/

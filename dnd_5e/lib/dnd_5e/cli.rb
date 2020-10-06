@@ -1,82 +1,101 @@
 class Dnd5e::CLI
   
   def start
-    puts ""
-    puts "Welcome to the 5th Edtion Dungen Manuel"
-    puts""
-    list_klasses
-    #klass_menu
+    puts "===================================================="
+    puts "Welcome to the 5th Edtion Class Proficiencies Manuel"
+    puts "===================================================="
+    API.fetch_klasses
+    @klasses = Klasses.all
+    print_klasses(@klasses)
+    get_user_klass
+    prompt
+    inp = gets.strip.downcase
+    while inp != 'exit' do
+      if inp == 'classes'
+        print_klasses(@klasses)
+        get_new_user_klass
+      else
+        puts "===================================="
+        puts "I do not information on the subject."
+        puts "===================================="
+      end
+      prompt
+      inp = gets.strip.downcase
     end
-    
-  
-  def list_klasses
-    puts ""
-    puts "Select the class you want to learn about"
-    puts ""
-    puts "1. Barbarian" # {i}. {name}
-    puts"-----------"
-    puts "2. Bard"
-    puts"-----------"
-    puts "3. Cleric"
-    puts"-----------"
-    puts "4. Druid"
-    puts"-----------"
-    puts "5. Fighter"
-    puts"-----------"
-    puts "6. Monk"
-    puts"-----------"
-    puts "7. Paladin"
-    puts"-----------"
-    puts "8. Ranger"
-    puts"-----------"
-    puts "9. Rouge"
-    puts"-----------"
-    puts "10. Sorcerer"
-    puts"-----------"
-    puts "11. Warlock"
-    puts"-----------"
-    puts "12. Wizard"
-    puts""
-    @klass = gets.strip.downcase
-    puts ""
-    API.fetch_klass(@klass)
-    puts ""
-    proficiencies = Klass.all
-    print_proficiencies(proficiencies)
+    farwell
   end
+  
+  def print_klasses(kl)
+    puts ""
+      kl.each.with_index(1) do | k, i |
+      puts "#{i}. #{k.index}"
+    end
+  end
+  
+  
+  def print_klass_info(kl)
+    puts "============================================"
+    puts "find the info you seek on you chossen class."
+    puts "============================================"
+    kl.each do | k |
+      puts "your chosen #{k.index.capitalize} has #{k.hit_die} Hit Die"
+      puts "They are Proficient at."
+    end
+  end
+  
   
   def print_proficiencies(pr)
     puts ""
-    puts "Here are the proficiencies of the #{@klass} you've chossesn"
-    pr.each.with_index(1) do | p, i |
-      puts "#{i}. #{p.name}"
+    #puts "Here are the Proficiencies for your chosen #{@name.upcase} class."
+    puts "Class Proficiencies:"
+      pr.each.with_index(1) do | p, i |
+      puts "#{i}. #{p.index}"
     end
   end
-    
-end
   
-  
-    #def klass_menu
-    #puts ""
-    #puts "choose one of the options to learn more about the class you chose or type 'classes' to see the list of classes or type 'exit'"
-   # puts "1. hit die"
-    #puts "----------------"
-    #puts "2. proficiencies"
-    #puts "----------------"
-    #puts "3. spells"
-    #binding.pry
-  #end
+  def prompt
+    puts "======================================="
+    puts "type 'classes' to see the class list or"
+    puts "type 'exit' to exit"
+    puts "======================================="
+  end
 
-   #@hit_die = gets.strip.downcase
-   #puts ""
-   #API.fetch_hit_die(@hit_die)
-   
-  # @proficiencies = gets.strip.downcase
-   #puts ""
-   #API.fetch_(@proficiencies)
-   
-   
-   #puts ""
-   #puts "selcet number to learn more specific information on your chossesn class"
-   
-   
+end  
+
+  def get_user_klass
+    puts"====================================================="
+    puts "put the 'name' of the Class you wish to learn about."
+    puts "===================================================="
+    @klass = gets.strip.downcase
+    if @klass == 'barbarian'||'bard'||'cleric'||'druid'||'fighter'||'monk'||'paldin'||'ranger'||'rogue'||'sorcerer'||'warlock'||'wizard'
+    API.fetch_klass(@klass)
+          #API.fetch_proficiencies(@klass)
+    klass = Klass.all
+    proficiencies = Proficiencies.all
+    print_klass_info(klass)
+    print_proficiencies(proficiencies)
+    else
+     puts "==========================================================="
+     puts "I do not information on the subject. please choose a class."
+     puts "==========================================================="
+   end
+  end
+    
+      def get_new_user_klass
+    puts"====================================================="
+    puts "put the 'name' of the Class you wish to learn about."
+    puts "===================================================="
+    @klass = gets.strip.downcase
+    API.fetch_klass(@klass)
+        #API.fetch_proficiencies(@klass)
+    user_klass = Klass.find_klass(@klass)
+    user_klass_prof = Proficiencies.find_proficiencies(@klass)
+    print_klass_info(user_klass)
+    print_proficiencies(user_klass_prof)
+  end
+  
+  def farwell
+    puts "================"
+    puts "Farwell Travler."
+    puts"================="
+  end
