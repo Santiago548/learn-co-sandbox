@@ -29,27 +29,34 @@ class Dnd5e::CLI
     puts ""
       kl.each.with_index(1) do | k, i |
       puts "#{i}. #{k.index}"
+      puts "----------------"
     end
   end
   
   
-  def print_klass_info(klass)
+  def print_klass_info(kl)
     puts "============================================"
     puts "find the info you seek on you chossen class."
     puts "============================================"
-      klass.each do |k|
-      puts "your chosen #{k.index} has #{k.hit_die} Hit Die"
+      kl.each do |k|
+      puts ""
+      puts "--------------------------------"
+      puts "your chosen #{k.klass[0].index.upcase} has #{k.klass[0].hit_die} Hit Die"
       puts "They are Proficient at."
+      puts "--------------------------------"
+      break
+      
     end
   end
   
   
   def print_proficiencies(pr)
     puts ""
-    #puts "Here are the Proficiencies for your chosen #{@name.upcase} class."
     puts "Class Proficiencies:"
+    puts "+--------------------+"
       pr.each.with_index(1) do | p, i |
       puts "#{i}. #{p.index}"
+      puts"+--------------------+"
     end
   end
   
@@ -89,7 +96,5 @@ class Dnd5e::CLI
     puts"================="
   end
 end
-  #d.klass[0].hit_die
-  #d.klass[0].index
   
   
