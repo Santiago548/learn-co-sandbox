@@ -4,8 +4,7 @@ class Proficiencies
 
     def initialize(name:, klass:)
       @name = name
-      @klass = klass
-      
+      @klass = []
       @@all << self
     end 
 
@@ -14,6 +13,12 @@ class Proficiencies
     end
   
     def self.find_proficiencies(name)
-      @@all.select {|k| k.name == k.name}
+      @@all.select {|k| k.name == name } #k.klass == array 
     end
+    
 end 
+
+
+# def self.find(klass)
+      #@@all.select { |k| k.klass[0].index == klass }
+    #end 
