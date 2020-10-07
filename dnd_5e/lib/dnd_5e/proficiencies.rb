@@ -1,9 +1,9 @@
 class Proficiencies
-   attr_accessor  :name, :klass
+   attr_accessor  :index, :klass, :hit_die
     @@all = []
 
-    def initialize(name:, klass:)
-      @name = name
+    def initialize(index:, klass:)
+      @index = index
       @klass = []
       @@all << self
     end 
@@ -12,8 +12,8 @@ class Proficiencies
         @@all
     end
   
-    def self.find_proficiencies(name)
-      @@all.select {|k| k.name == name } #k.klass == array 
+    def self.find_proficiencies(index)
+      @@all.select {|k| k.klass[0].index == index}
     end
     
 end 

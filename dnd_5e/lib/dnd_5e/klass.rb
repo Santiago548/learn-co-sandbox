@@ -5,6 +5,7 @@ class Klass
     def initialize(index:, hit_die:) 
       @index = index
       @hit_die = hit_die
+      @klasses = []
       @proficiencies = []
       @@all << self
     end

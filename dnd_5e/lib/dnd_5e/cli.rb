@@ -49,7 +49,7 @@ class Dnd5e::CLI
     #puts "Here are the Proficiencies for your chosen #{@name.upcase} class."
     puts "Class Proficiencies:"
       pr.each.with_index(1) do | p, i |
-      puts "#{i}. #{p.name}"
+      puts "#{i}. #{p.index}"
     end
   end
   
@@ -66,12 +66,15 @@ class Dnd5e::CLI
     puts "===================================================="
     puts "put the 'name' of the Class you wish to learn about."
     puts "===================================================="
+    puts ""
     @klass = gets.strip.downcase
-    if @klass == 'barbarian'||'bard'||'cleric'||'druid'||'fighter'||'monk'||'paldin'||'ranger'||'rogue'||'sorcerer'||'warlock'||'wizard'
+    puts ""
+    if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
     API.fetch_klass(@klass)
     proficiencies = Klass.find_klass(@klass).proficiencies
-    klass = Proficiencies.find_proficiencies(@klass)
-    print_klass_info(klass)
+  
+    #klass = Proficiencies.find_proficiencies(@klass)
+    print_klass_info(Proficiencies.find_proficiencies(@klass))
     print_proficiencies(proficiencies)
     else
      puts "==========================================================="

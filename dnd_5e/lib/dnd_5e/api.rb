@@ -22,7 +22,7 @@ class API
     
     proficiencies = JSON.parse(response)["proficiencies"]
     proficiencies.each do |p|
-      new_klass_prof = Proficiencies.new(name: p["name"], klass: klass["index"])
+      new_klass_prof = Proficiencies.new(index: p["index"], klass: klass["index"])
       #new_klass_prof.klass
       n_klass.proficiencies << new_klass_prof
       new_klass_prof.klass << n_klass
