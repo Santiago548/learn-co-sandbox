@@ -1,24 +1,14 @@
 class Proficiencies
-   attr_accessor  :index, :klass, :hit_die
+   attr_accessor :hit_die, :proficiencies, :subclasses, :saving_throws
     @@all = []
 
-    def initialize(index:, klass:)
-      @index = index
-      @klass = []
-      @@all << self
-    end 
-
-    def self.all
-        @@all
-    end
-  
-    def self.find_proficiencies(index)
-      @@all.select {|k| k.klass[0].index == index}
-    end
-    
+ 
 end 
 
 
 # def self.find(klass)
       #@@all.select { |k| k.klass[0].index == klass }
     #end 
+    
+    
+ 

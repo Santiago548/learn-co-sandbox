@@ -4,15 +4,13 @@ class Dnd5e::CLI
     puts "======================================"
     puts "Welcome to the 5th Edtion Class Manuel"
     puts "======================================"
-    API.fetch_klasses
-    @klasses = Klasses.all
-    print_klasses(@klasses)
     get_user_klass
     prompt
     inp = gets.strip.downcase
     while inp != 'exit' do
       if inp == 'classes'
-        print_klasses(@klasses)
+        
+        
         get_user_klass
       else
         puts "===================================="
@@ -61,36 +59,32 @@ class Dnd5e::CLI
       puts ""
       puts "--------------------------------"
       puts "your chosen #{k.klass[0].index.upcase} has #{k.klass[0].hit_die} Hit Die"
-<<<<<<< HEAD
+
       puts "--------------------------------"
       break
-=======
       puts "They are Proficient at."
       puts "--------------------------------"
       break
       
->>>>>>> f48531f0c1d59eb2de8ce51ff1c81c8d8f6ee4a9
     end
   end
   
   
   def print_proficiencies(pr)
     puts ""
-<<<<<<< HEAD
     puts "Their Class Proficiencies are:"
     puts "+-+-+-+-+-+-+-+-+-+-+"
       pr.each.with_index(1) do | p, i |
       puts "#{i}. #{p.index}"
     puts "+-+-+-+-+-+-+-+-+-+-+"
-=======
     puts "Class Proficiencies:"
     puts "+--------------------+"
       pr.each.with_index(1) do | p, i |
       puts "#{i}. #{p.index}"
       puts"+--------------------+"
->>>>>>> f48531f0c1d59eb2de8ce51ff1c81c8d8f6ee4a9
     end
   end
+end
   
   def prompt
     puts ""
@@ -108,5 +102,4 @@ class Dnd5e::CLI
     puts "================"
   end
 end
-  
   

@@ -1,11 +1,9 @@
 class Klass
-   attr_accessor  :index, :hit_die, :proficiencies
+   attr_accessor  :index
    @@all = []
   
-    def initialize(index:, hit_die:) 
+    def initialize(index:) 
       @index = index
-      @hit_die = hit_die
-      @klasses = []
       @proficiencies = []
       @@all << self
     end
