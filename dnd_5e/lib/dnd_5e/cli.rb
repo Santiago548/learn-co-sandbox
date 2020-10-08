@@ -2,7 +2,7 @@ class Dnd5e::CLI
   
   def start
     puts "===================================================="
-    puts "Welcome to the 5th Edtion Class Proficiencies Manuel"
+    puts "Welcome to the 5th Edtion Class Manuel"
     puts "===================================================="
     API.fetch_klasses
     @klasses = Klasses.all
@@ -42,21 +42,19 @@ class Dnd5e::CLI
       puts ""
       puts "--------------------------------"
       puts "your chosen #{k.klass[0].index.upcase} has #{k.klass[0].hit_die} Hit Die"
-      puts "They are Proficient at."
       puts "--------------------------------"
       break
-      
     end
   end
   
   
   def print_proficiencies(pr)
     puts ""
-    puts "Class Proficiencies:"
-    puts "+--------------------+"
+    puts "Their Class Proficiencies are:"
+    puts "+-+-+-+-+-+-+-+-+-+-+"
       pr.each.with_index(1) do | p, i |
       puts "#{i}. #{p.index}"
-      puts"+--------------------+"
+    puts "+-+-+-+-+-+-+-+-+-+-+"
     end
   end
   
@@ -70,9 +68,9 @@ class Dnd5e::CLI
   end
 
   def get_user_klass
-    puts "===================================================="
-    puts "put the 'name' of the Class you wish to learn about."
-    puts "===================================================="
+    puts "=================================================================="
+    puts "type the 'name' from the Class list above you wish to learn about."
+    puts "=================================================================="
     puts ""
     @klass = gets.strip.downcase
     puts ""
@@ -84,16 +82,16 @@ class Dnd5e::CLI
     print_klass_info(Proficiencies.find_proficiencies(@klass))
     print_proficiencies(proficiencies)
     else
-     puts "==========================================================="
-     puts "I do not information on the subject. please choose a class."
-     puts "==========================================================="
+     puts "===================================="
+     puts "I do not information on the subject."
+     puts "===================================="
    end
   end
   
   def farwell
     puts "================"
     puts "Farwell Travler."
-    puts"================="
+    puts "================"
   end
 end
   
