@@ -11,27 +11,21 @@ class Dnd5e::CLI
       if inp == 'classes'
         
         
-        get_user_klass
-      else
-        puts "===================================="
-        puts "I do not information on the subject."
-        puts "===================================="
-      end
-      prompt
-      inp = gets.strip.downcase
-    end
+       get_user_klass
+      #else
+       # puts "===================================="
+       # puts "I do not information on the subject."
+       # puts "===================================="
+     # end
+     # prompt
+     # inp = gets.strip.downcase
+    #end
     farwell
   end
   
-  def print_klasses(kl)
-    puts ""
-      kl.each.with_index(1) do | k, i |
-      puts "#{i}. #{k.index}"
-      puts "----------------"
-    end
-  end
+
   
-   def get_user_klass
+  def get_user_klass
     puts "=================================================================="
     puts "type the 'name' from the Class list above you wish to learn about."
     puts "=================================================================="
@@ -40,10 +34,9 @@ class Dnd5e::CLI
     puts ""
     if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
     API.fetch_klass(@klass)
-    binding.pry
+    print_klass_info(Proficiencies.find_klass(@klass))
+    print_proficiencies(Proficiencies.find_klass(@klass))
     
-    proficiencies = Klass.find_klass(@klass)
-    print_klass_info(Proficiencies.find_proficiencies(@klass))
     else
      puts "===================================="
      puts "I do not information on the subject."
@@ -59,32 +52,21 @@ class Dnd5e::CLI
       kl.each do |k|
       puts ""
       puts "--------------------------------"
-      puts "your chosen #{k.klass[0].index.upcase} has #{k.klass[0].hit_die} Hit Die"
-
-      puts "--------------------------------"
-      break
-      puts "They are Proficient at."
-      puts "--------------------------------"
-      break
-      
+      puts "your chosen #{k.name} has (#{k.hit_die}) Hit Die"
+      puts "-Their saving throws are +#{k.saving_throws[0]["name"]}/#{k.saving_throws[1]["name"]}+"
+      puts "-At higher lvls you can subclass to +#{k.subclasses[0]["name"]}+ #{k.name}"
+      puts "They are Proficient at:"
     end
   end
   
   
   def print_proficiencies(pr)
-    puts ""
-    puts "Their Class Proficiencies are:"
+    a = pr[0].proficiencies
     puts "+-+-+-+-+-+-+-+-+-+-+"
-      pr.each.with_index(1) do | p, i |
-      puts "#{i}. #{p.index}"
-    puts "+-+-+-+-+-+-+-+-+-+-+"
-    puts "Class Proficiencies:"
-    puts "+--------------------+"
-      pr.each.with_index(1) do | p, i |
-      puts "#{i}. #{p.index}"
-      puts"+--------------------+"
-    end
+      a.each.with_index(1) do | p, i |
+      puts "#{i}. #{p["name"]}"
   end
+  puts "+-+-+-+-+-+-+-+-+-+-+"
 end
   
   def prompt
@@ -103,4 +85,13 @@ end
     puts "================"
   end
 end
+
+
+  #def print_klasses(kl)
+   # puts ""
+      #kl.each.with_index(1) do | k, i |
+      #puts "#{i}. #{k.index}"
+      #puts "----------------"
+   # end
+  #end
   

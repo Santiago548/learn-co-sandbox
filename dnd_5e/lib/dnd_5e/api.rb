@@ -7,7 +7,7 @@ class API
     uri = URI(url)
     response = Net::HTTP.get(uri)
     k = JSON.parse(response)
-      a = Proficiencies.new(name: k["name"], hit_die: k["hit_die"], proficiencies: k["proficiencies"], saving_throws: k["saving_throws"], subclasses: k["subclasses"])
+      a = Proficiencies.new(name: k["name"], hit_die: k["hit_die"], proficiencies: k["proficiencies"], saving_throws: k["saving_throws"], subclasses: k["subclasses"], klass: klass)
     end
 end
   
