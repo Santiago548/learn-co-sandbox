@@ -7,20 +7,9 @@ class API
     uri = URI(url)
     response = Net::HTTP.get(uri)
     k = JSON.parse(response)
-      a = Proficiencies.new
-      a.hit_die = k["hit_die"]
-      a.proficiencies = k["proficiencies"] # iterate over
-      a.saving_throws = k["saving_throws"] #["index"] # iterate over
-      a.subclasses = k["subclasses"] #["index"]
-    binding.pry
-    proficiencies.each do |p|
-      
-      new_klass_prof = Proficiencies.new
-      proficiency = p["index"]
-     
-      end
+      a = Proficiencies.new(name: k["name"], hit_die: k["hit_die"], proficiencies: k["proficiencies"], saving_throws: k["saving_throws"], subclasses: k["subclasses"])
     end
-  end
+end
   
   
   # n_klass.proficiencies << new_klass_prof

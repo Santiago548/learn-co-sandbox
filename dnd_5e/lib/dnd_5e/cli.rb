@@ -40,9 +40,10 @@ class Dnd5e::CLI
     puts ""
     if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
     API.fetch_klass(@klass)
-    proficiencies = Klass.find_klass(@klass).proficiencies
+    binding.pry
+    
+    proficiencies = Klass.find_klass(@klass)
     print_klass_info(Proficiencies.find_proficiencies(@klass))
-    print_proficiencies(proficiencies)
     else
      puts "===================================="
      puts "I do not information on the subject."
