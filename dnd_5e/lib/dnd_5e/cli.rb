@@ -32,8 +32,6 @@ class Dnd5e::CLI
     end
   end
   
-  #<Klass:0x0000000001eeff60
-  
   def get_user_klass
     puts "=================================================================="
     puts "type the 'name' from the Class list above you wish to learn about."
@@ -45,7 +43,6 @@ class Dnd5e::CLI
     API.fetch_klass(@klass)
     print_klass_info(Klass.find_klass(@klass))
     print_proficiencies(Klass.find_klass(@klass))
-    binding.pry
     else
      puts "===================================="
      puts "I do not information on the subject."
@@ -55,6 +52,7 @@ class Dnd5e::CLI
   
   
   def print_klass_info(kl)
+    a = kl[0]
     puts "============================================"
     puts "find the info you seek on you chossen class."
     puts "============================================"

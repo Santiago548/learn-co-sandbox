@@ -17,8 +17,7 @@ class Klass
       @@all
     end
   
-    def self.find_klass(klass)
-     @@all.select {|k| binding.pry}
+    def self.find_klass(klasses)
+     @@all.select {|k| k == k.klasses[0]}
     end
-    
 end 
