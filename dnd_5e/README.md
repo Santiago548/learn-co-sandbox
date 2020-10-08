@@ -1,10 +1,6 @@
 # Dnd5e
 
-"Welcome to the 5th Edition dungeon guide. check out information on classes! soon to come races, weapons, armor, and magic."
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dnd_5e`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+"Welcome to the 5th Edition Class manuel . information available are hit Die and Proficiencies of all Classes"
 
 ## Installation
 

@@ -23,7 +23,7 @@ class API
       new_klass_prof = Proficiencies.new(index: p["index"], klass: klass["index"])
       n_klass.proficiencies << new_klass_prof
       new_klass_prof.klass << n_klass
-       end
-     end
+      end
+    end
 
 end

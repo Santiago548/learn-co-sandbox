@@ -1,9 +1,9 @@
 class Dnd5e::CLI
   
   def start
-    puts "===================================================="
+    puts "======================================"
     puts "Welcome to the 5th Edtion Class Manuel"
-    puts "===================================================="
+    puts "======================================"
     API.fetch_klasses
     @klasses = Klasses.all
     print_klasses(@klasses)
@@ -31,6 +31,25 @@ class Dnd5e::CLI
       puts "#{i}. #{k.index}"
       puts "----------------"
     end
+  end
+  
+   def get_user_klass
+    puts "=================================================================="
+    puts "type the 'name' from the Class list above you wish to learn about."
+    puts "=================================================================="
+    puts ""
+    @klass = gets.strip.downcase
+    puts ""
+    if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
+    API.fetch_klass(@klass)
+    proficiencies = Klass.find_klass(@klass).proficiencies
+    print_klass_info(Proficiencies.find_proficiencies(@klass))
+    print_proficiencies(proficiencies)
+    else
+     puts "===================================="
+     puts "I do not information on the subject."
+     puts "===================================="
+   end
   end
   
   
@@ -67,26 +86,6 @@ class Dnd5e::CLI
     puts ""
   end
 
-  def get_user_klass
-    puts "=================================================================="
-    puts "type the 'name' from the Class list above you wish to learn about."
-    puts "=================================================================="
-    puts ""
-    @klass = gets.strip.downcase
-    puts ""
-    if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
-    API.fetch_klass(@klass)
-    proficiencies = Klass.find_klass(@klass).proficiencies
-  
-    #klass = Proficiencies.find_proficiencies(@klass)
-    print_klass_info(Proficiencies.find_proficiencies(@klass))
-    print_proficiencies(proficiencies)
-    else
-     puts "===================================="
-     puts "I do not information on the subject."
-     puts "===================================="
-   end
-  end
   
   def farwell
     puts "================"
