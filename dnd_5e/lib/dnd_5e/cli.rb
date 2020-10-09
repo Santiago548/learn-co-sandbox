@@ -41,8 +41,10 @@ class Dnd5e::CLI
     puts ""
     if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
     API.fetch_klass(@klass)
-    print_klass_info(Klass.find_klass(@klass))
-    print_proficiencies(Klass.find_klass(@klass))
+    #klasses = Klass.all
+    klasses = Klass.find_klass(@klass)
+    print_klass_info(klasses)
+    print_proficiencies(klasses)
     else
      puts "===================================="
      puts "I do not information on the subject."
@@ -51,8 +53,7 @@ class Dnd5e::CLI
   end
   
   
-  def print_klass_info(kl)
-    a = kl[0]
+def print_klass_info(kl)
     puts "============================================"
     puts "find the info you seek on you chossen class."
     puts "============================================"
@@ -68,7 +69,7 @@ class Dnd5e::CLI
   
   
   def print_proficiencies(pr)
-    a = pr[0].proficiencies
+   a = pr[0].proficiencies
     puts "+-+-+-+-+-+-+-+-+-+-+"
       a.each.with_index(1) do | p, i |
       puts "#{i}. #{p["name"]}"

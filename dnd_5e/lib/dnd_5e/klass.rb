@@ -1,5 +1,5 @@
 class Klass
-     attr_accessor :name, :hit_die, :proficiencies, :subclasses, :saving_throws, :klass, :klasses
+     attr_accessor :name, :hit_die, :proficiencies, :subclasses, :saving_throws, :klass 
     @@all = []
     
     def initialize( name:, hit_die:, proficiencies:, subclasses:, saving_throws:, klass:)
@@ -9,7 +9,6 @@ class Klass
       @subclasses = subclasses
       @saving_throws = saving_throws
       @klass = klass
-      @klasses = []
       @@all << self
     end 
 
@@ -17,7 +16,7 @@ class Klass
       @@all
     end
   
-    def self.find_klass(klasses)
-     @@all.select {|k| k == k.klasses[0]}
+    def self.find_klass(klass)
+     @@all.select {|k| k.klass == klass}
     end
 end 

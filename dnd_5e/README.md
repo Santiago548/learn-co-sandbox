@@ -1,6 +1,6 @@
 # Dnd5e
 
-"Welcome to the 5th Edition Class manuel . information available are hit Die and Proficiencies of all Classes"
+"Welcome to the 5th Edition Class manuel . information available are hit Die, saving throws, subclasses and Proficiencies of all Classes"
 
 ## Installation
 
