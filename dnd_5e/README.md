@@ -20,7 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Start the program:
+-Pick a class 'name' from the list:
+-the information on the 'class' you chose will populate.
+-Type 'classes' to see the list of 'classes' again 
+-or
+-Type 'exit' to exit the program
 
 ## Development
 
