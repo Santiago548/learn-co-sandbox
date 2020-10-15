@@ -4,6 +4,7 @@ class Dnd5e::CLI
     puts "======================================"
     puts "Welcome to the 5th Edtion Class Manuel"
     puts "======================================"
+    @klasses = API.fetch_klasses
     get_klass_list
     get_user_klass
     prompt
@@ -24,10 +25,9 @@ class Dnd5e::CLI
   end
   
   def get_klass_list
-    @klasses = [ "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rouge", "Sorcerer", "Warlock", "Wizard"]
      puts ""
     @klasses.each.with_index(1) do | c, i |
-      puts "#{i} - #{c}"
+      puts "#{i} - #{c.capitalize}"
       puts "-------------------"
     end
   end
@@ -39,7 +39,8 @@ class Dnd5e::CLI
     puts ""
     @klass = gets.strip.downcase
     puts ""
-    if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
+    if @klasses.include?(@klass)
+    #if @klass == 'barbarian'||  @klass == 'bard'||  @klass == 'cleric'||  @klass == 'druid'||  @klass == 'fighter'||  @klass == 'monk'||  @klass == 'paldin'||  @klass == 'ranger'||  @klass == 'rogue'||  @klass == 'sorcerer'||  @klass == 'warlock'|| @klass == 'wizard'
     API.fetch_klass(@klass)
     klasses = Klass.find_klass(@klass)
     print_klass_info(klasses)
@@ -63,7 +64,7 @@ def print_klass_info(kl)
       puts "your chosen #{k.name} has (#{k.hit_die}) Hit Die"
       puts "-Their saving throws are +#{k.saving_throws[0]["name"]}/#{k.saving_throws[1]["name"]}+"
       puts "-At higher lvls you can subclass to +#{k.subclasses[0]["name"]}+ #{k.name}"
-      puts "They are Proficient at:"
+      puts "-They are Proficient at:"
     end
   end
   
@@ -75,7 +76,7 @@ def print_klass_info(kl)
       puts "#{i}. #{p["name"]}"
       end
     puts "+-+-+-+-+-+-+-+-+-+-+"
-    puts "Their skills are: "
+    puts "-Their skills are: "
   end
   
    def print_skills(sk)

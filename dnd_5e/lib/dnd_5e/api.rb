@@ -1,5 +1,15 @@
 class API
   
+  def self.fetch_klasses
+    url = "https://www.dnd5eapi.co/api/classes/"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    k = JSON.parse(response)
+    #binding.pry
+    k["results"].map { |k| k["index"]}
+  end
+  
+
    def self.fetch_klass(klass)
     url = "https://www.dnd5eapi.co/api/classes/#{klass}"
     uri = URI(url)

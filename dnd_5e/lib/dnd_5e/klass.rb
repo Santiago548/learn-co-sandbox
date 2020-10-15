@@ -18,6 +18,6 @@ class Klass
     end
   
     def self.find_klass(klass)
-     @@all.select {|k| k.klass == klass}
+     @@all.find {|k| k.klass == klass}
     end
 end 
