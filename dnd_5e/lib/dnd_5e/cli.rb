@@ -43,8 +43,6 @@ class Dnd5e::CLI
     API.fetch_klass(@klass)
     klasses = Klass.find_klass(@klass)
     print_klass_info(klasses)
-    print_proficiencies(klasses)
-    print_skills(klasses)
     else
      puts "===================================="
      puts "I do not information on the subject."
@@ -52,36 +50,26 @@ class Dnd5e::CLI
    end
   end
   
-  
-def print_klass_info(k)
+  def print_klass_info(k)
+    pr = k.proficiencies
+    sk = k.skills
     puts "============================================"
     puts "find the info you seek on you chossen class."
     puts "============================================"
-      #kl.each do |k|
-      puts ""
-      puts "--------------------------------"
-      puts "your chosen #{k.name} has (#{k.hit_die}) Hit Die"
-      puts "-Their saving throws are +#{k.saving_throws[0]["name"]}/#{k.saving_throws[1]["name"]}+"
-      puts "-At higher lvls you can subclass to +#{k.subclasses[0]["name"]}+ #{k.name}"
-      puts "-They are Proficient at:"
-    #end
-  end
-  
-  
-  def print_proficiencies(pr)
-   a = pr.proficiencies
+    puts ""
+    puts "--------------------------------"
+    puts "your chosen #{k.name} has (#{k.hit_die}) Hit Die"
+    puts "-Their saving throws are +#{k.saving_throws[0]["name"]}/#{k.saving_throws[1]["name"]}+"
+    puts "-At higher lvls you can subclass to +#{k.subclasses[0]["name"]}+ #{k.name}"
+    puts "-They are Proficient at:"
     puts "+-+-+-+-+-+-+-+-+-+-+"
-      a.each.with_index(1) do | p, i |
+      pr.each.with_index(1) do | p, i |
       puts "#{i}. #{p["name"]}"
       end
     puts "+-+-+-+-+-+-+-+-+-+-+"
     puts "-Their skills are: "
-  end
-  
-   def print_skills(sk)
-   a = sk.skills
     puts "+-+-+-+-+-+-+-+-+-+-+"
-      a.each.with_index(1) do | p, i |
+      sk.each.with_index(1) do | p, i |
       puts "#{i}. #{p["name"]}"
       end
     puts "+-+-+-+-+-+-+-+-+-+-+"
